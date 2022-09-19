@@ -1,0 +1,21 @@
+{% extends "Base.html" %}
+{% block body %}
+
+
+<div class="col-md-12">
+<form action="/update_pintor/{{Onepintur.0}}" method="POST">
+    <br>
+    <input type="text" class="form-control" id="idAutor" name="idAutor" value ={{Onepintur.0}} readonly=readonly>
+    <br>
+    <input type="text" class="form-control" id="Nombre_autor" name="Nombre_autor"  value ={{Onepintur.1}} >
+    <br>
+    <input type="text" class="form-control" id="Apellido_autor" name="Apellido_autor"  value ={{Onepintur.2}} >
+    <br>
+    <textarea class="form-control" id="Biografia" name="Biografia" rows="3" value ={{Onepintur.3}} > {{Onepintur.3}}</textarea>
+    <br>
+    <button type="submit" class="btn btn-primary btn-block">Actualizar Pintor</button>
+
+</form>
+</div>
+
+{% endblock %}

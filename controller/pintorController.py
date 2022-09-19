@@ -40,6 +40,7 @@ def actualizar_visualizacion(id):
     conexion.commit()
     conexion.close()
     return str(f"SE GENERO CORRECTAMENTE EL UPDATE DE {id} ")
+
 def obtener_pintor_visual():
     conexion = obtener_conexion()
     pintores = []
@@ -48,4 +49,25 @@ def obtener_pintor_visual():
         pintores = cursor.fetchall()
     conexion.close()
     return pintores
+
+def obtener_unico_pintor(id):
+    conexion = obtener_conexion()
+    pintores = []
+    with conexion.cursor() as cursor:
+        cursor.execute(f"SELECT * FROM bosdos6qw6vefrichu88.Autor WHERE idAutor ={id}; ")
+        pintores = cursor.fetchall()
+    conexion.close()
+    print(str(pintores))
+    return pintores
+
+def actualizar_pintor(Nombre:str,Apellido:str,Biografia:str,id):
+    conexion = obtener_conexion()
+    Nombre=Nombre.upper()
+    Apellido=Apellido.upper()
+    Consulta=f"UPDATE bosdos6qw6vefrichu88.Autor SET Nombre_autor='{Nombre}', Apellido='{Apellido}', Breve_biografia='{Biografia}'  WHERE idAutor={id};"
+    with conexion.cursor() as cursor:
+        cursor.execute(Consulta)
+    conexion.commit()
+    conexion.close()
+    return str(f"SE GENERO CORRECTAMENTE EL UPDATE DE {Nombre} {Apellido} ")
 
