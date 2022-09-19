@@ -1,0 +1,112 @@
+{% extends "Base.html" %}
+{% block body %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center text-light">
+				Pintores Registrados
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center text-light">
+						Listado y acciones
+					</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									#
+								</th>
+								<th>
+									Nombre
+								</th>
+								<th>
+									Apellido
+								</th>
+								<th>
+									Editar
+								</th>
+                                <th>
+									Eliminar
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for Pintor in Pintores %}
+                                <tr class="table-success">
+								<td>
+									{{Pintor.0}}
+								</td>
+								<td>
+									{{Pintor.1}} 
+								</td>
+								<td>
+									{{Pintor.2}}
+								</td>
+								<td>
+									<a href="/edit_pintor/{{Pintor.0}}" class="btn btn-warning btn-block"  type="submit"><i class="bi bi-hammer"></i></a>
+								</td>
+                                <td>
+									<a href="/delete_pintor/{{Pintor.0}}" class="btn btn-danger btn-block"  type="submit"><i class="bi bi-recycle"></i></a>
+								</td>
+							</tr>
+                            {% endfor %}
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center text-light">
+						Registro
+					</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<form role="form">
+						<div class="form-group">
+							 <!--label for="exampleInputEmail1" class="text-success">
+								Nombre
+							</label-->
+							<input type="text" class="form-control" id="Nombre_autor" placeholder="Nombre">
+						</div>
+                        <div class="form-group">
+                            <!--label for="exampleInputEmail1"class="text-info">
+                               Apellido
+                           </label-->
+                           <input type="text" class="form-control" id="Apellido_autor" placeholder="Apellido">
+                       </div>
+
+                       <div class="form-group">
+                        <!--label for="exampleInputEmail1"class="text-success">
+                           Corta Biografia
+                       </label-->
+                       <textarea placeholder="Corta Biografia" class="form-control" id="Biografia" rows="3" > </textarea>
+                   </div>
+
+						<button type="Crear Pintor" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
