@@ -1,0 +1,17 @@
+{% extends "Base.html" %}
+{% block body %}
+
+
+<div class="col-md-12">
+<form action="/updateContinente/{{Onecontinent.0}}" method="POST">
+    <br>
+    <input type="text" class="form-control" id="idContinente" name="idContinente" value ={{Onecontinent.0}} readonly=readonly>
+    <br>
+    <input type="text" class="form-control" id="Nombre_continente" name="Nombre_continente"  value ={{Onecontinent.1}} >
+    <br>
+    <button type="submit" class="btn btn-primary btn-block">Actualizar Continente</button>
+
+</form>
+</div>
+
+{% endblock %}
