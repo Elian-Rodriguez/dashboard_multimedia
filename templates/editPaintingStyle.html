@@ -1,0 +1,19 @@
+{% extends "Base.html" %}
+{% block body %}
+
+<br>
+<div class="col-md-12">
+<form action="/updatePaintingStyle/{{Onestyle.0}}" method="POST">
+    <br>
+    <input type="text" class="form-control" id="idEstilos_pintura" name="idEstilos_pintura" value ={{Onestyle.0}} readonly=readonly>
+    <br>
+    <input type="text" class="form-control" id="Nombre_estilo" name="Nombre_estilo"  value ={{Onestyle.1}} >
+    <br>
+    <textarea class="form-control" id="Descripcion_Estilo" name="Descripcion_Estilo" rows="3" value ={{Onestyle.2}} >{{Onestyle.2}}</textarea>
+    <br>
+    <button type="submit" class="btn btn-primary btn-block">Actualizar Estilo</button>
+
+</form>
+</div>
+
+{% endblock %}
