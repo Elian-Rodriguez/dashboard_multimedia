@@ -1,0 +1,153 @@
+{% extends "Base.html" %}
+{% block body %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center text-light">
+				Pinturas Registradas
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center text-light">
+						Listado y acciones
+					</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									#
+								</th>
+								<th>
+									NOMBRE PINTURA
+								</th>	
+								<th>
+									NUMERO PIEZAS
+								</th>	
+								<th>
+									NOMBRE AUTOR
+								</th>	
+								<th>
+									AÑO ELABORACION
+								</th>	
+								<th>
+									ESTILO
+								</th>	
+								<th>
+									CONTIENTE
+								</th>
+
+							</tr>
+						</thead>
+						<tbody>
+                            {% for pintura in pinturas %}
+                                <tr class="table-success">
+								<td>
+									{{pintura.0}}
+								</td>
+								<td>
+									{{pintura.1}} 
+								</td>
+								<td>
+									{{pintura.2}}
+								</td>
+								<td>
+									{{pintura.3}}
+								</td>
+								<td>
+									{{pintura.4}}
+								</td>
+								<td>
+									{{pintura.5}}
+								</td>
+								<td>
+									{{pintura.6}}
+								</td>
+								
+							</tr>
+                            {% endfor %}
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center text-light">
+						Registro
+					</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<form role="form" form action="/add_pintura" method="POST">
+						<div class="form-group">
+							 
+							<input type="text" class="form-control" id="Nombre_pintura" name="Nombre_pintura" placeholder="Nombre de la pintura">
+						</div>
+                        <div class="form-group">
+                        
+							<select name="Autor_idAutor"class="form-control" >
+								{% for pintor in pintores %}  
+									<option value="{{pintor.0}}">{{pintor.1}} {{pintor.2}}</option>    
+								{% endfor %}
+							</select>
+                       </div>
+
+					   <div class="form-group">
+                        
+						<select name="Continente_idContinente"class="form-control" >
+							{% for Continente in Continentes %}  
+								<option value="{{Continente.0}}">{{Continente.1}}</option>    
+							{% endfor %}
+						</select>
+				   		</div>
+
+						   <div class="form-group">
+                        
+							<select name="Estilos_pintura_idEstilos_pintura"class="form-control" >
+								{% for Estilo in Estilos %}  
+									<option value="{{Estilo.0}}">{{Estilo.1}}</option>    
+								{% endfor %}
+							</select>
+						    </div>
+							<div class="form-group">
+							 
+								<input type="number" class="form-control" id="year_elaboracion" name="year_elaboracion" placeholder="AÑO DE ELABORACION">
+							</div>
+
+							<div class="form-group">
+							 
+								<input type="number" class="form-control" id="numero_piezas" name="numero_piezas" placeholder="NUMERO DE PIEZAS DEL ROMPECABEZAS">
+							</div>
+
+                       <div class="form-group">
+                       <textarea placeholder="Descripcion del cuadro" class="form-control" id="Descripcion_pintura" name="Descripcion_pintura" rows="3" > </textarea>
+                   </div>
+				   <div class="form-group">
+					<input type="file" class="form-control-file" id="archivo_subir" accept="image/*">
+				   </div>
+				   
+						<button type="Crear pintura" class="btn btn-primary">
+							Crear pintura
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

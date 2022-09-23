@@ -11,11 +11,7 @@ from FieldMultimedia_route import FieldMultimedia_Blueprint
 from PuzlePart_route import PuzlePart_Blueprint
 
 
-
 app = Flask(__name__)
-
-
-
 
 
 app.register_blueprint(pintor_Blueprint)
@@ -28,10 +24,7 @@ app.register_blueprint(FieldMultimedia_Blueprint)
 app.register_blueprint(PuzlePart_Blueprint)
 
 
-
-
 app.secret_key = "mysecretkey"
-
 
 
 @app.route('/')
@@ -68,4 +61,5 @@ def index_admin():
 
 
 if __name__ == '__main__':
+    #app.run(debug=True,port=5000, host="0.0.0.0")
     app.run(debug=True)
