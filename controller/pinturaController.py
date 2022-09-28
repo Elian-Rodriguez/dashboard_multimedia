@@ -9,11 +9,11 @@ def Crear_pintura(Nombre_pintura:str,
                 Descripcion_pintura:str,
                 ruta_interna_server):
     Nombre_pintura=Nombre_pintura.upper()
-    Apellido=Apellido.upper()
     conexion = obtener_conexion()
     Consulta =f"""INSERT INTO bosdos6qw6vefrichu88.Pintura
 		(Nombre_pintura, Autor_idAutor, Continente_idContinente, Estilos_pintura_idEstilos_pintura, year_elaboracion, numero_piezas, Descripcion_pintura, ruta_interna_server)
-		VALUES('{Nombre_pintura}', {Autor_idAutor}, {Continente_idContinente}, {Estilos_pintura_idEstilos_pintura}, {year_elaboracion}, {numero_piezas},'{Descripcion_pintura}', {ruta_interna_server});"""
+		VALUES('{Nombre_pintura}', {Autor_idAutor}, {Continente_idContinente}, {Estilos_pintura_idEstilos_pintura}, {year_elaboracion}, {numero_piezas},'{Descripcion_pintura}', '{ruta_interna_server}');"""
+    #print(str(Consulta))
     with conexion.cursor() as cursor:
         cursor.execute(Consulta)
     conexion.commit()
@@ -29,7 +29,8 @@ def listar_pinturas():
                 FROM  bosdos6qw6vefrichu88.Pintura p 
                 inner join bosdos6qw6vefrichu88.Autor a on(p.Autor_idAutor=a.idAutor)
                 inner join bosdos6qw6vefrichu88.Estilos_pintura ep on (p.Estilos_pintura_idEstilos_pintura=ep.idEstilos_pintura)
-                inner JOIN bosdos6qw6vefrichu88.Continente c on(p.Continente_idContinente=c.idContinente)""")
+                inner JOIN bosdos6qw6vefrichu88.Continente c on(p.Continente_idContinente=c.idContinente)
+                order by p.idPintura asc""")
         pinturas = cursor.fetchall()
     conexion.close()
     return pinturas

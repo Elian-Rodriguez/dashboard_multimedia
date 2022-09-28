@@ -7,12 +7,16 @@ background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
 font-family: 'Numans', sans-serif;
+background-attachment: fixed;
 }
 
 .container{
 height: 100%;
 align-content: center;
 }
+
+
+
 
 .card{
 height: 370px;
