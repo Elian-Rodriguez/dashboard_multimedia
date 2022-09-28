@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request,flash,url_for,redirect,session
 from flask_mysqldb import MySQL
 from flask_login import login_manager,login_user,logout_user,login_required
+from config import Config
 from Pintor_route import pintor_Blueprint
 from Continente_route import Continente_Blueprint
 from Pintura_route import Pintura_Blueprint
@@ -12,7 +13,7 @@ from PuzlePart_route import PuzlePart_Blueprint
 
 
 app = Flask(__name__)
-
+app.config.from_object(Config)
 
 app.register_blueprint(pintor_Blueprint)
 app.register_blueprint(Continente_Blueprint)
@@ -30,6 +31,10 @@ app.secret_key = "mysecretkey"
 @app.route('/')
 def index():
     return render_template('login.html')
+
+@app.route('/pruebas_locas')
+def pruebas_locas():
+    return render_template('pruebas_locas.html')
 
 @app.route('/index_admin',  methods=['POST'])
 def index_admin():
