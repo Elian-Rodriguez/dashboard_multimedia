@@ -69,4 +69,17 @@ def Create_pintura():
         finally:
             flash(menssanges)
             return redirect(url_for('.pintura'))
-        
+@Pintura_Blueprint.route('/edit_pintura/<string:id_pintura>')
+def editPintura(id_pintura):
+    oneArt = pinturaC.obtener_unico_pintura(id_pintura)
+    print(str(oneArt))
+    menssanges = f"Busqueda de pintor Exitoso {id_pintura}"
+    flash(menssanges)
+    try:
+        session.pop('_flashes', None)
+        session['_flashes'].clear()   
+    except Exception as e:
+            print(str(e))
+    finally:
+        flash(menssanges)
+    return render_template('edit-pintura.html' , oneArt=oneArt)

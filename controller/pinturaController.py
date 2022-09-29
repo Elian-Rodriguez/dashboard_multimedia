@@ -42,7 +42,7 @@ def obtener_unico_pintura(id):
         cursor.execute(f"""SELECT idPintura, Nombre_pintura, Autor_idAutor, Continente_idContinente, Estilos_pintura_idEstilos_pintura, year_elaboracion, numero_piezas, Descripcion_pintura, ruta_interna_server
                             FROM bosdos6qw6vefrichu88.Pintura
                             WHERE idPintura={id}; """)
-        pintura = cursor.fetchall()
+        pintura = cursor.fetchone()
     conexion.close()
     print(str(pintura))
     return pintura
