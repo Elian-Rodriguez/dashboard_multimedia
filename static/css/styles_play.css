@@ -1,0 +1,11 @@
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+background-image: url('https://mamcartagena.org/wp-content/uploads/2018/05/KO2O0127.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+background-attachment: fixed;
+}

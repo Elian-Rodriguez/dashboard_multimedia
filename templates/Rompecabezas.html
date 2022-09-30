@@ -8,23 +8,67 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
 -->
+<!--Bootsrap 4 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/styles_play.css') }}">
+
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-<br />
-{{ruta}}
-<br>
-<label for="difficulty">Difficulty</label>
-<input type="range" min="2" max="16" value="4" id="difficulty" />
+  <div class="container">
+    <div clas="row">
+      <div class="col-12"><h1>{{Presentacion.1}}</h1>
+      <br>
+     
+    </div>
+    </div>
+ 
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Descripcion</h5>
+              <p class="card-text">{{Datos.7}}.</p> 
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Descripcion</h5>
+              <p class="card-text">{{Datos.7}}.</p> 
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col">
+      <canvas id="canvas"></canvas>
+      
+      <br>
+      <label for="difficulty"></label>
+      <input type="hidden" min="2" max="16" value="4" id="difficulty" />
+    </div>
+      </div>
+      
+
+
+    </div>
+  </div>
+
+
+
+
+
+<!--Declaracion de variable de uso de script de javascript provenientes de back-->
 {% set another = ruta %}
-<b>{{ruta}}</b>
 </body>
 <script>
 const PUZZLE_HOVER_TINT = "#009900";
 const img = new Image();
 const canvas = document.querySelector("#canvas");
 const stage = canvas.getContext("2d");
-let difficulty = 4;
+let difficulty = "{{partes}}";
 let pieces;
 let puzzleWidth;
 let puzzleHeight;
@@ -34,10 +78,9 @@ let currentPiece;
 let currentDropPiece;
 let mouse;
 img.addEventListener("load", onImage, false);
-//img.src = "{{ url_for('static', filename= 'upload/{{MONA_LISA}}.JPG') }}";
+
 archivo=""
 img.src = "{{ url_for ('static', filename =another )}}"
-console.log(arc)
 
 
 function initPuzzle() {
@@ -59,7 +102,7 @@ function initPuzzle() {
     puzzleWidth,
     puzzleHeight
   );
-  createTitle("Click to Start Puzzle");
+  createTitle("Click para Iniciar");
   buildPieces();
 }
 
@@ -264,6 +307,7 @@ function gameOver() {
   document.onpointerdown = null;
   document.onpointermove = null;
   document.onpointerup = null;
+  console.log("GAME OVER")
   initPuzzle();
 }
 
