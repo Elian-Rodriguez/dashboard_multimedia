@@ -10,6 +10,8 @@ from Estilo_route import Estilo_Blueprint
 from Questions_route import Questions_Blueprint
 from FieldMultimedia_route import FieldMultimedia_Blueprint
 from PuzlePart_route import PuzlePart_Blueprint
+from Rompecabezas_route import Rompecabezas_Blueprint
+
 
 
 app = Flask(__name__)
@@ -23,7 +25,7 @@ app.register_blueprint(Estilo_Blueprint)
 app.register_blueprint(Questions_Blueprint)
 app.register_blueprint(FieldMultimedia_Blueprint)
 app.register_blueprint(PuzlePart_Blueprint)
-
+app.register_blueprint(Rompecabezas_Blueprint)
 
 app.secret_key = "mysecretkey"
 
@@ -32,9 +34,7 @@ app.secret_key = "mysecretkey"
 def index():
     return render_template('login.html')
 
-@app.route('/pruebas_locas')
-def pruebas_locas():
-    return render_template('pruebas_locas.html')
+
 
 @app.route('/index_admin',  methods=['POST'])
 def index_admin():
