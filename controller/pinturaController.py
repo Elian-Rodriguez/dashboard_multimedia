@@ -63,5 +63,17 @@ def obtener_unico_pintura(id):
     conexion.close()
     print(str(pintura))
     return pintura
+def obtener_maximo_id():
+    Consulta ="SELECT MAX(idPintura) AS MAXIMO FROM bosdos6qw6vefrichu88.Pintura;"
+    conexion = obtener_conexion()
+    pintura = 2
+    with conexion.cursor() as cursor:
+        cursor.execute(Consulta)
+        pintura = cursor.fetchone()
+        pintura =pintura[0]
+        print(f"{type(pintura)} -- {pintura}")
+    conexion.close()
+    print(str(pintura))
+    return int(pintura)
 
 

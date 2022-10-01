@@ -145,7 +145,7 @@ dmypy.json
 cython_debug/
 myvenv
 #REPO DE IMAGENES
-static/upload/*
+static/upload/*PARTE*
 # PyCharm
 #  JetBrains specific template is maintainted in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore

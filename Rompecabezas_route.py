@@ -13,7 +13,8 @@ def pintor():
 
 @Rompecabezas_Blueprint.route('/Rompecabezas_play')
 def pruebas_locas():
-    id = random.randint(1, 2)
+    maximo= pinturaC.obtener_maximo_id()
+    id = random.randint(1, maximo)
     Rompecabezas = partPuzzleCm.obtenerPartesPintura(id)
     oneArt = pinturaC.obtener_unico_pintura(id)
     presentacion=pinturaC.presentarPintura(id)
