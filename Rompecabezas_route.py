@@ -1,6 +1,7 @@
 import controller.partPuzzleController as partPuzzleCm
 import controller.pinturaController as pinturaC
 import controller.pintorController as pintorC
+import controller.estiloController as estiloC
 from flask import Blueprint,render_template
 import random
 import numpy as np
@@ -21,7 +22,9 @@ def pruebas_locas():
     ruta= oneArt[8]
     partes=np.sqrt(presentacion[2])
     pintor=pintorC.obtener_unico_pintor(oneArt[2])[0]
-    print(f"PINTO ADQUIRIDO = {pintor}")
+    Estilo=estiloC.ontenerUnicoEstilo(oneArt[4])[0]
+    print(f" Estilo de pintura obtenido = {Estilo}")
+
     
     context={
         'Rompecabezas':Rompecabezas,
@@ -29,6 +32,7 @@ def pruebas_locas():
         'partes':partes,
         'Presentacion':presentacion,
         'Datos':oneArt,
-        'Pintor':pintor
+        'Pintor':pintor,
+        'Estilo':Estilo
     }
     return render_template('Rompecabezas.html',**context)
