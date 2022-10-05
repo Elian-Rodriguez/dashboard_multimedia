@@ -53,3 +53,17 @@ def actualizarContinente(Nombre:str,id):
     conexion.close()
     return str(f"SE GENERO CORRECTAMENTE EL UPDATE DE {Nombre} ")
 
+def preguntasCreadas():
+    conexion = obtener_conexion()
+    Preguntas = []
+    Consulta ="""SELECT q.idquestions , p.Nombre_pintura ,q.pregunta_var  ,count(r.questions_idquestions) as Respuestas_registradas
+FROM bosdos6qw6vefrichu88.questions q 
+inner join bosdos6qw6vefrichu88.Pintura p on(q.Pintura_idPintura=p.idPintura)
+LEFT  JOIN  bosdos6qw6vefrichu88.Respuestas r on(q.idquestions=r.questions_idquestions)
+GROUP BY r.questions_idquestions ;
+    """
+    with conexion.cursor() as cursor:
+        cursor.execute(Consulta)
+        Preguntas=cursor.fetchall()
+    conexion.close()
+    return Preguntas
