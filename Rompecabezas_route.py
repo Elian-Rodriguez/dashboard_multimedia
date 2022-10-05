@@ -20,13 +20,15 @@ def pruebas_locas():
     presentacion=pinturaC.presentarPintura(id)
     ruta= oneArt[8]
     partes=np.sqrt(presentacion[2])
-    print(str(presentacion))
+    pintor=pintorC.obtener_unico_pintor(oneArt[2])[0]
+    print(f"PINTO ADQUIRIDO = {pintor}")
     
     context={
         'Rompecabezas':Rompecabezas,
         'ruta':ruta,
         'partes':partes,
         'Presentacion':presentacion,
-        'Datos':oneArt
+        'Datos':oneArt,
+        'Pintor':pintor
     }
     return render_template('Rompecabezas.html',**context)

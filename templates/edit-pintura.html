@@ -1,20 +1,27 @@
 {% extends "Base.html" %}
 {% block body %}
 
+<div class="container">
+<div class="row">
+    <br>
+    <center><h1>{{oneArt.1}}</h1></center>
+    <br>
+</div>
 
-<div class="col-md-12">
+<DIV class="row">
+<div class="col-md-6">
 <form action="/addPart" method="POST">
+   
+    <h3>Generar Rompecabezas</h3>
     <br>
-    <h1>{{oneArt.1}}</h1>
+    <input type="text" class="form-control" id="idPintura" name="idPintura" value ="{{oneArt.0}}" readonly=readonly>
     <br>
-    <input type="text" class="form-control" id="idPintura" name="idPintura" value ="{{oneArt.0}}"" readonly=readonly>
-    <br>
-    <input type="text" class="form-control" id="Nombre_pintura" name="Nombre_pintura"  value ="{{oneArt.1}}" >
+    <input type="text" class="form-control" id="Nombre_pintura" name="Nombre_pintura"  value ="{{oneArt.1}}" readonly=readonly>
     <br>
     <input type="number" class="form-control" id="numero_piezas" name="numero_piezas"  value ="{{oneArt.6}}" >
     <br>
     <br>
-    <input type="text" class="form-control" id="ruta_interna_server" name="ruta_interna_server"  value ="{{oneArt.8}}" >
+    <input type="text" class="form-control" id="ruta_interna_server" name="ruta_interna_server"  value ="{{oneArt.8}}" readonly=readonly >
     <br>
 
     <button type="submit" class="btn btn-primary btn-block">Generar Rompecabezas</button>
@@ -22,4 +29,11 @@
 </form>
 </div>
 
+<div class="col-md-6">
+    <img src="{{ url_for ('static', filename =oneArt.8 )}}"
+
+
+</div>
+</div>
+</div>
 {% endblock %}
