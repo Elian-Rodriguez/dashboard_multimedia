@@ -1,0 +1,119 @@
+{% extends "Base.html" %}
+{% block body %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center text-light">
+				Pintura Registrada : {{Pregunta.1}}  <br>
+			</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center text-light">
+				Pregunta Registrada : {{Pregunta.2}} <br>
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center text-light">
+						Listado y acciones
+					</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									ID
+								</th>
+								<th>
+									Respuesta
+								</th>
+							
+								<th>
+									Es Correcta
+								</th>
+                                <th>
+									Editar
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for Respuesta in Respuestas %}
+                                <tr class="table-success">
+								<td>
+									{{Respuesta.0}}
+								</td>
+								<td>
+									{{Respuesta.1}} 
+								</td>
+								<td>
+									{{Respuesta.2}} 
+								</td>
+								<td>
+									<a href="/editRespuesta/{{Respuesta.0}}" class="btn btn-warning btn-block"  type="submit"><i class="bi bi-hammer"></i></a>
+								</td>
+
+							</tr>
+                            {% endfor %}
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-center text-light">
+						Registro
+					</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<form role="form" form action="/addRespuesta" method="POST">
+						<div class="form-group">
+							<!--label for="exampleInputEmail1" class="text-success">
+							   Nombre
+						   </label-->
+						   <input type="text" class="form-control" id="questions_idquestions" name="questions_idquestions" placeholder="id de la respuesta" value ="{{Pregunta.0}}" readonly=readonly>
+					   </div><br>
+						<div class="form-group">
+							 <!--label for="exampleInputEmail1" class="text-success">
+								Nombre
+							</label-->
+							<input type="text" class="form-control" id="respuesta_var" name="respuesta_var" placeholder="Respuesta A crear">
+						</div>
+						<div class="form-group">
+                        
+							<select name="Es_correcta"class="form-control" >
+								
+									<option value="0">Incorrecta</option>    
+									<option value="1">Correcta</option> 
+							
+							</select>
+                       </div>
+							<div>
+						<button type="submit" class="btn btn-primary">
+							Crear Pregunta
+						</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
