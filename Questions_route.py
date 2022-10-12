@@ -1,6 +1,7 @@
 from flask import Blueprint,render_template,request,session,flash,url_for,redirect
 import controller.preguntaController as preguntasC
 import controller.pinturaController as pinturaC
+import controller.respuestaController as respuestaC
 
 Questions_Blueprint = Blueprint('Questions',__name__,template_folder='templates', static_folder='static')
 
@@ -30,3 +31,15 @@ def crearPregunta():
         finally:
             flash(menssanges)
             return redirect(url_for('.Questions'))
+
+@Questions_Blueprint.route('/editPregunta/<string:id_pregunta>')
+def obtenerPregunta(id_pregunta):
+    print(id_pregunta)
+    Pregunta=preguntasC.obtenerUnicaPreguntaDescripcion(id_pregunta)
+    Respuestas=respuestaC.obtenerRespuestasPregunta(id_pregunta)
+    print(str(Respuestas))
+    context={
+        'Pregunta':Pregunta,
+        'Respuestas':Respuestas
+    }
+    return render_template('Pregunta_respuesta.html',**context)

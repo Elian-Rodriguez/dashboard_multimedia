@@ -43,6 +43,22 @@ def ontenerUnicaPregunta(id):
     print(str(pintores))
     return pintores
 
+def obtenerUnicaPreguntaDescripcion(id):
+    conexion = obtener_conexion()
+    Preguntas = []
+    Consulta =f"""SELECT q.idquestions , p.Nombre_pintura ,q.pregunta_var  ,count(r.questions_idquestions) as Respuestas_registradas
+FROM bosdos6qw6vefrichu88.questions q 
+inner join bosdos6qw6vefrichu88.Pintura p on(q.Pintura_idPintura=p.idPintura)
+LEFT OUTER  JOIN  bosdos6qw6vefrichu88.Respuestas r on(q.idquestions=r.questions_idquestions)
+Where q.idquestions ={id}
+GROUP BY q.idquestions;
+    """
+    with conexion.cursor() as cursor:
+        cursor.execute(Consulta)
+        Preguntas=cursor.fetchone()
+    conexion.close()
+    return Preguntas
+
 def actualizarContinente(Nombre:str,id):
     conexion = obtener_conexion()
     Nombre=Nombre.upper()

@@ -8,9 +8,6 @@ import numpy as np
 
 Rompecabezas_Blueprint = Blueprint('Rompecabezas',__name__,template_folder='templates', static_folder='static')
 
-@Rompecabezas_Blueprint.route('/Questions')
-def pintor():
-    return "Pagina Questions"
 
 @Rompecabezas_Blueprint.route('/Rompecabezas_play')
 def pruebas_locas():
