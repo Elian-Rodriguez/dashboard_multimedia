@@ -4,6 +4,7 @@ import pymongo
 def obtenerConexionMongo():
     client = pymongo.MongoClient("mongodb+srv://alien_83:Arelis11@cluster0.4ur0oyq.mongodb.net/?retryWrites=true&w=majority")
     db = client.test
+    print(db)
     return client
 def obtenerDataBase():
     client =  obtenerConexionMongo()
@@ -17,13 +18,17 @@ def insertDocument(collection, data):
     """
     return collection.insert_one(data).inserted_id
 
-def insertNote(name:str,idPregunta,idRespuesta):
+def insertNote(name:str,grado,idPregunta,idRespuesta,puntaje):
     name = name.upper()
     idPregunta=int(idPregunta)
     idRespuesta=int(idRespuesta)
     new_show = {
     "name": name,
-    "year": 1994
+    "grado":grado,
+    "idPregunta": idPregunta,
+    "idRespuesta":idRespuesta,
+    "Puntaje":puntaje
     }
     return (insertDocument(obtenerDataBase(), new_show))
-    
+
+obtenerConexionMongo()
