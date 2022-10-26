@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/196/PNG/128/paintbrush2_23725.png">
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/styles_play.css') }}">
+
+
+    <title>ART PUZZLE</title>
+
+</head>
+<body>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+               <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="https://ucc.edu.co/">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/U._Cooperativa_de_Colombia_logo.svg/1200px-U._Cooperativa_de_Colombia_logo.svg.png" alt="..." height="56">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">{{usuario}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">{{grado}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Conocenos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Finalizar Sesion</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">
+                    Revision De Lo Aprendido Sobre {{pintura.1}}
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {% set another = ruta %}
+                <img alt="Bootstrap Image Preview" src="{{ url_for ('static', filename =another )}}" class="rounded" style="width:650px;max-height:950px;" alt=""  />
+                <!--img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded" /-->
+            </div>
+            <div class="col-md-6">
+                <form role="form">
+                    <div class="form-group">
+                         
+                        <label for="exampleInputEmail1">
+                            Email address
+                        </label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" />
+                    </div>
+                    <div class="form-group">
+                         
+                        <label for="exampleInputPassword1">
+                            Password
+                        </label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" />
+                    </div>
+                    <div class="form-group">
+                         
+                        <label for="exampleInputFile">
+                            File input
+                        </label>
+                        <input type="file" class="form-control-file" id="exampleInputFile" />
+                        <p class="help-block">
+                            Example block-level help text here.
+                        </p>
+                    </div>
+                    <div class="checkbox">
+                         
+                        <label>
+                            <input type="checkbox" /> Check me out
+                        </label>
+                    </div> 
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

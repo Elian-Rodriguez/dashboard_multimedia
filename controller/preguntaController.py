@@ -1,5 +1,5 @@
 from controller.Data_connection import obtener_conexion 
-
+#from Data_connection import obtener_conexion 
 
 def crearPregunta(pregunta:str,id_pintura:int):
     pregunta=pregunta.upper()
@@ -69,6 +69,18 @@ def actualizarContinente(Nombre:str,id):
     conexion.close()
     return str(f"SE GENERO CORRECTAMENTE EL UPDATE DE {Nombre} ")
 
+def preguntasRespuestasPinturas(idPintura):
+    conexion = obtener_conexion()
+    Consulta=f"""SELECT idRespuestas ,respuesta_var ,questions_idquestions ,q.pregunta_var  FROM bosdos6qw6vefrichu88.Respuestas r 
+left outer join bosdos6qw6vefrichu88.questions q on (r.questions_idquestions=q.idquestions)
+where q.Pintura_idPintura ={idPintura}
+order by questions_idquestions desc;"""
+    with conexion.cursor() as cursor:
+        cursor.execute(Consulta)
+        Preguntas=cursor.fetchall()
+    conexion.close()
+    return Preguntas
+
 def preguntasCreadas():
     conexion = obtener_conexion()
     Preguntas = []
@@ -76,10 +88,20 @@ def preguntasCreadas():
 FROM bosdos6qw6vefrichu88.questions q 
 inner join bosdos6qw6vefrichu88.Pintura p on(q.Pintura_idPintura=p.idPintura)
 LEFT OUTER  JOIN  bosdos6qw6vefrichu88.Respuestas r on(q.idquestions=r.questions_idquestions)
-GROUP BY q.idquestions;
+GROUP BY q.idquestions
+ORDER BY p.Nombre_pintura,q.idquestions,Respuestas_registradas DESC;
     """
     with conexion.cursor() as cursor:
         cursor.execute(Consulta)
         Preguntas=cursor.fetchall()
     conexion.close()
     return Preguntas
+def obtenerEnunciadoPregunta(idPintura):
+    conexion=obtener_conexion()
+    Consulta=f"SELECT * FROM bosdos6qw6vefrichu88.questions q where Pintura_idPintura ={idPintura};"
+    with conexion.cursor() as cursor:
+        cursor.execute(Consulta)
+        Preguntas=cursor.fetchall()
+    conexion.close()
+    return Preguntas
+#print(str(preguntasRespuestasPinturas(2)))

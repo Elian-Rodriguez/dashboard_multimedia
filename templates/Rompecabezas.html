@@ -4,13 +4,7 @@
   <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/196/PNG/128/paintbrush2_23725.png">
 
   <title>ART PUZZLE</title>
- <!--   <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
--->
+
 <!--Bootsrap 4 CDN-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -76,6 +70,7 @@
 
 <!--Declaracion de variable de uso de script de javascript provenientes de back-->
 {% set another = ruta %}
+{% set pregunta = ruta %}
 </body>
 <script>
 const PUZZLE_HOVER_TINT = "#009900";
@@ -321,7 +316,8 @@ function gameOver() {
   document.onpointermove = null;
   document.onpointerup = null;
   console.log("GAME OVER")
-  initPuzzle();
+  window.location.href = "/Cuestionario/{{Presentacion.0}}";
+  
 }
 
 function pieceDropped(e) {
