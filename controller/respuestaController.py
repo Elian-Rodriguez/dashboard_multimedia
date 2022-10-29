@@ -79,3 +79,13 @@ def obtenerRespuestasPregunta(id_pregunta):
         respuestas= cursor.fetchall()
     conexion.close()
     return respuestas
+
+def validarRespuesta(idRespuesta):
+    conexion = obtener_conexion()
+    consulta=f"SELECT Es_correcta FROM bosdos6qw6vefrichu88.Respuestas where idRespuestas  = {idRespuesta} ;"
+    with conexion.cursor()as cursor:
+        cursor.execute(str(consulta))
+        respuestas= cursor.fetchone()
+        conexion.close()
+        #print(str(respuestas[0]))
+    return int(respuestas[0])

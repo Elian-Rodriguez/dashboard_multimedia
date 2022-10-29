@@ -40,7 +40,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Finalizar Sesion</a>
           </li>
-        
+          <li class="nav-item">
+          <input type="hidden" class="form-control" id="pintura" name="pintura" value ="{{pintura.0}}" readonly=readonly>
+          </li>
         </ul>
       </div>
     </div>
@@ -58,42 +60,29 @@
             <div class="col-md-6">
                 {% set another = ruta %}
                 <img alt="Bootstrap Image Preview" src="{{ url_for ('static', filename =another )}}" class="rounded" style="width:650px;max-height:950px;" alt=""  />
-                <!--img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded" /-->
             </div>
             <div class="col-md-6">
-                <form role="form">
+                <form role="form" form action="/evaluar" method="POST">
                     <div class="form-group">
-                         
-                        <label for="exampleInputEmail1">
-                            Email address
-                        </label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" />
+                        <input type="hidden" class="form-control" id="idPintura" name="idPintura" value ="{{pintura.0}}" readonly=readonly>
+                        {% for enunciado in enunciados %}
+                        <h4>{{enunciado.1}}</h4>
+                        <select name="{{enunciado.0}}"class="form-control" >
+                            {% for respose in respuestas %}
+                                {% for respuesta in respose %}  
+                                    {% if respuesta.3 == enunciado.0 %}
+                                        <option value="{{respuesta.0}}">{{respuesta.1}}</option>
+                                    {%endif%}
+                                {% endfor %}    
+                            {% endfor %}
+                        </select>
+                        <br>
+                        {% endfor %}
                     </div>
-                    <div class="form-group">
-                         
-                        <label for="exampleInputPassword1">
-                            Password
-                        </label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" />
-                    </div>
-                    <div class="form-group">
-                         
-                        <label for="exampleInputFile">
-                            File input
-                        </label>
-                        <input type="file" class="form-control-file" id="exampleInputFile" />
-                        <p class="help-block">
-                            Example block-level help text here.
-                        </p>
-                    </div>
-                    <div class="checkbox">
-                         
-                        <label>
-                            <input type="checkbox" /> Check me out
-                        </label>
-                    </div> 
+                    <br>
+                    
                     <button type="submit" class="btn btn-primary">
-                        Submit
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Evaluar
                     </button>
                 </form>
             </div>

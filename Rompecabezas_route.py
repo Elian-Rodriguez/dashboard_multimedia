@@ -5,6 +5,7 @@ import controller.pintorController as pintorC
 import controller.estiloController as estiloC
 import controller.preguntaController as preguntaC
 import controller.respuestaController as respuestasC
+import controller.mongo_connection as mongo
 from flask import Blueprint,render_template,request,session,url_for,redirect
 import random
 import numpy as np
@@ -12,7 +13,7 @@ import numpy as np
 Rompecabezas_Blueprint = Blueprint('Rompecabezas',__name__,template_folder='templates', static_folder='static')
 
 @Rompecabezas_Blueprint.route('/Rompecabezas_play')
-def pruebas_locas():
+def generarRompecabezas():
     print(str(session['usuario']) +" - "+str(session['grado']))
     maximo= pinturaC.obtener_maximo_id()
     id = random.randint(1, maximo)
@@ -50,8 +51,8 @@ def Student():
         if nombre !=None and grado!=None  and nombre != " " and grado != " ":
             session['usuario']=nombre
             session['grado']=grado
-            return redirect(url_for('.pruebas_locas'))
-        return redirect(url_for('.loginStudent'))
+            return redirect(url_for('.generarRompecabezas'))
+    return redirect(url_for('.loginStudent'))
 
 @Rompecabezas_Blueprint.route('/Cuestionario/<string:idPintura>')
 def Cuestionario(idPintura):
@@ -77,3 +78,28 @@ def Cuestionario(idPintura):
     }
     print(f"el contexto es {context}")
     return render_template('preguntasCuadro.html',**context)
+
+@Rompecabezas_Blueprint.route('/evaluar', methods=['POST'])
+def Evaluar():
+    if request.method == 'POST':
+        usuario=session['usuario']
+        grado=session['grado']
+        idPintura=request.form['idPintura']
+        datosRespuesta=dict(request.form)
+        datosRespuesta.pop('idPintura')
+        scores=[]
+        score=0
+        idEvaluacion=[]
+        for dato in datosRespuesta:
+            idPregunta=dato
+            idRespuesta=datosRespuesta[dato]
+            puntaje=int(respuestasC.validarRespuesta(idRespuesta))
+            score+=puntaje
+            scores.append(puntaje)
+            idEvaluacion.append(mongo.insertNote(usuario,grado,idPregunta,idRespuesta,idPintura,puntaje))
+        promedio=(score/int(len(scores)))*100
+        print("RESPUESTAS CORRECTAS "+str(score)+"/"+str(len(scores)))
+        print("PORCENTAJE DE ACIERTO = "+str(promedio))
+        print(str(idEvaluacion))
+        return (str(request.form))
+    

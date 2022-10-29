@@ -64,6 +64,19 @@ def index_admin():
         finally:
             return index() 
 
+@app.errorhandler(400)
+def access_error(error):
+    return render_template('500.html'), 400
+@app.errorhandler(401)
+def access_error(error):
+    return render_template('500.html'), 401
+@app.errorhandler(404)
+def access_error(error):
+    return render_template('500.html'), 404
+
+@app.errorhandler(500)
+def access_error(error):
+    return render_template('500.html'), 500
 
 if __name__ == '__main__':
     #app.run(debug=True,port=5000, host="0.0.0.0")

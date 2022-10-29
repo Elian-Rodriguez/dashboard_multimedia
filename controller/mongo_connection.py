@@ -8,9 +8,10 @@ def obtenerConexionMongo():
     return client
 def obtenerDataBase():
     client =  obtenerConexionMongo()
-    db = client['SeriesDB']
+    
+    db = client['ART_QUALIFICATION']
     # Fetch our series collection
-    return  db['series']
+    return  db['RATINGS']
 
 def insertDocument(collection, data):
     """ Function to insert a document into a collection and
@@ -18,7 +19,10 @@ def insertDocument(collection, data):
     """
     return collection.insert_one(data).inserted_id
 
-def insertNote(name:str,grado,idPregunta,idRespuesta,puntaje):
+def insertNote(name:str,grado,idPregunta,idRespuesta,idPintura,puntaje):
+    myclient=obtenerConexionMongo()
+    mydb = myclient["ART_QUALIFICATION"]
+    mycol = mydb["QUALIFICATION"]
     name = name.upper()
     idPregunta=int(idPregunta)
     idRespuesta=int(idRespuesta)
@@ -27,8 +31,10 @@ def insertNote(name:str,grado,idPregunta,idRespuesta,puntaje):
     "grado":grado,
     "idPregunta": idPregunta,
     "idRespuesta":idRespuesta,
+    "idPintura":idPintura,
     "Puntaje":puntaje
     }
-    return (insertDocument(obtenerDataBase(), new_show))
+    
+    return mycol.insert_one(new_show).inserted_id
 
 obtenerConexionMongo()
