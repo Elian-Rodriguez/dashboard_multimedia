@@ -100,6 +100,10 @@ def Evaluar():
         promedio=(score/int(len(scores)))*100
         print("RESPUESTAS CORRECTAS "+str(score)+"/"+str(len(scores)))
         print("PORCENTAJE DE ACIERTO = "+str(promedio))
-        print(str(idEvaluacion))
-        return (str(request.form))
+        print("IDS DE LAS PREGUNTAS SOLUCIONADAS "+str(idEvaluacion))
+        context={'correctas':str(str(score)+"/"+str(len(scores))),
+        "porcentajeAcierto":promedio,
+        "idsPreguntas":str(idEvaluacion)
+        }
+        return render_template('calificacion.html',**context)
     
