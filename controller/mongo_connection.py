@@ -1,4 +1,5 @@
 import pymongo
+import datetime
 
 # Create the client
 def obtenerConexionMongo():
@@ -26,9 +27,12 @@ def insertNote(name:str,grado,idPregunta,idRespuesta,idPintura,puntaje):
     name = name.upper()
     idPregunta=int(idPregunta)
     idRespuesta=int(idRespuesta)
+    d = datetime.datetime.strptime("2017-10-13T10:53:53.000Z", "%Y-%m-%dT%H:%M:%S.000Z")
+
     new_show = {
     "name": name,
     "grado":grado,
+    "date" : d,
     "idPregunta": idPregunta,
     "idRespuesta":idRespuesta,
     "idPintura":idPintura,
@@ -36,5 +40,3 @@ def insertNote(name:str,grado,idPregunta,idRespuesta,idPintura,puntaje):
     }
     
     return mycol.insert_one(new_show).inserted_id
-
-obtenerConexionMongo()

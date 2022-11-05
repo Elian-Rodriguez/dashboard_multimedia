@@ -6,6 +6,7 @@ import controller.estiloController as estiloC
 import controller.preguntaController as preguntaC
 import controller.respuestaController as respuestasC
 import controller.mongo_connection as mongo
+import controller.continenteController as continenteC
 from flask import Blueprint,render_template,request,session,url_for,redirect
 import random
 import numpy as np
@@ -52,7 +53,7 @@ def Student():
             session['usuario']=nombre
             session['grado']=grado
             return redirect(url_for('.generarRompecabezas'))
-    return redirect(url_for('.loginStudent'))
+    return redirect(url_for('.studentLogin'))
 
 @Rompecabezas_Blueprint.route('/Cuestionario/<string:idPintura>')
 def Cuestionario(idPintura):
@@ -106,4 +107,65 @@ def Evaluar():
         "idsPreguntas":str(idEvaluacion)
         }
         return render_template('calificacion.html',**context)
+
+@Rompecabezas_Blueprint.route('/menuContinetes')
+def continentes():
+    usuario=session['usuario']
+    grado=session['grado']
+    Continetes =continenteC.listarPinturaContinente()
+    context={
+        'usuario':usuario,
+        'grado':grado,
+        'continentes':Continetes
+    }
+    return render_template('mapaContinental.html',**context)
+
+@Rompecabezas_Blueprint.route('/sessioncontinete/<string:id_continete>')
+def obtenerPinturasContinente(id_continete):
+    usuario=session['usuario']
+    grado=session['grado']
+    InfoContinente=continenteC.ontenerUnicoContinente(id_continete)[0]
+    Pinturas=pinturaC.obtenerPinturaContinente(str(id_continete))
+    context={
+        'usuario':usuario,
+        'grado':grado,
+        'pinturas':Pinturas,
+        'continental':InfoContinente
+    }
+    return render_template('ContinenteStudnent.html',**context)
+
+
+@Rompecabezas_Blueprint.route('/rompecabezasPintura/<string:id_pintura>')
+def generarRompecabezasSeleccion(id_pintura):
+    print(str(session['usuario']) +" - "+str(session['grado']))
     
+    id = int(id_pintura)
+    Rompecabezas = partPuzzleCm.obtenerPartesPintura(id)
+    oneArt = pinturaC.obtener_unico_pintura(id)
+    presentacion=pinturaC.presentarPintura(id)
+    ruta= oneArt[8]
+    partes=np.sqrt(presentacion[2])
+    pintor=pintorC.obtener_unico_pintor(oneArt[2])[0]
+    Estilo=estiloC.ontenerUnicoEstilo(oneArt[4])[0]
+    #print(f" Estilo de ruta obtenido = {ruta}")
+
+    
+    context={
+        'Rompecabezas':Rompecabezas,
+        'ruta':ruta,
+        'partes':partes,
+        'Presentacion':presentacion,
+        'Datos':oneArt,
+        'Pintor':pintor,
+        'Estilo':Estilo
+    }
+    print(f"el contexto es {context}")
+    return render_template('Rompecabezas.html',**context)
+
+
+
+
+@Rompecabezas_Blueprint.route('/close')
+def close():
+    session.clear()
+    return redirect(url_for('.studentLogin'))

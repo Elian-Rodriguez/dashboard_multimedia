@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/196/PNG/128/paintbrush2_23725.png">
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/styles_play.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+    <title>ART PUZZLE</title>
+
+</head>
+<body>
+   <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+             <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="https://ucc.edu.co/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/U._Cooperativa_de_Colombia_logo.svg/1200px-U._Cooperativa_de_Colombia_logo.svg.png" alt="..." height="56">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a  class="nav-link active" aria-current="page" href="/menuContinetes"><i class="fa fa-home  fa-1x" aria-hidden="true"> </i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">{{usuario}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">{{grado}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Conocenos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/close">Finalizar Sesion</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+          </div>
+      </div>
+      <div class="col-md-12">
+        <h2  class="text-center">{{continental.1}}</h2>
+      </div>
+<div class="row">
+    <div class="col-md-8">
+<div class="col-md-8">
+
+</div>
+    </div>
+<div class="col-md-4">
+   <table class="table">
+      <thead>
+         <tr class="table-success">
+            <th>
+               #
+            </th>
+            <th>
+               Pintura
+            </th>
+         
+            <th>
+               Autor
+            </th>
+         </tr>
+      </thead>
+      <tbody>
+                {% for pintura in pinturas %}
+                    <tr class="table-success">
+            <td>
+               {{pintura.0}}
+            </td>
+            <td>
+               <a href="/rompecabezasPintura/{{pintura.0}}">{{pintura.1}} </a>
+            </td>
+            
+            <td>
+               {{pintura.2}}
+            </td>
+         </tr>
+                {% endfor %}
+         
+         </tr>
+      </tbody>
+   </table>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -62,3 +62,14 @@ def actualizarContinente(Nombre:str,id):
     conexion.close()
     return str(f"SE GENERO CORRECTAMENTE EL UPDATE DE {Nombre} ")
 
+def listarPinturaContinente():
+    conexion=obtener_conexion()
+    Continetes=[]
+    Consulta="""SELECT c.idContinente ,c.Nombre_continente ,COUNT(idPintura) as canPintura  FROM bosdos6qw6vefrichu88.Pintura p
+RIGHT join bosdos6qw6vefrichu88.Continente c on(c.idContinente=p.Continente_idContinente)
+GROUP by c.idContinente ;"""
+    with conexion.cursor() as cursor:
+        cursor.execute(Consulta)
+        Continetes=cursor.fetchall()
+    conexion.close()
+    return Continetes

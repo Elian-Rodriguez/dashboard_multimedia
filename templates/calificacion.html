@@ -30,31 +30,11 @@
 
             </div>
             <div>
-                <a type="button" class="btn btn-primary" href="/Rompecabezas_play">Continuar</a>
-                <a type="button" class="btn btn-danger">Salir</a>
+                <a type="button" class="btn btn-primary" href="/menuContinetes">Continuar</a>
+                <a type="button" class="btn btn-danger" href="/close">Salir</a>
             </div>
         </div><!-- /card-container -->
     </div><!-- /container -->
 </body>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("formulario").addEventListener('submit', validarFormulario); 
-});
-
-function validarFormulario(evento) {
-  evento.preventDefault();
-  var usuario = document.getElementById('nombre').value;
-  if(usuario.length == 0) {
-    alert('No has escrito nada en el usuario');
-    return;
-  }
-  var clave = document.getElementById('grado').value;
-  if (clave.length < 1) {
-    alert('El grado no es valido');
-    return;
-  }
-  this.submit();
-}
-    
-</script>
 

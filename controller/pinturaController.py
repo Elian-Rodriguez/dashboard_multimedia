@@ -77,3 +77,14 @@ def obtener_maximo_id():
     return int(pintura)
 
 
+def obtenerPinturaContinente(idContinente:str):
+    Pinturas=[]
+    Consulta=f"""SELECT p.idPintura  , p.Nombre_pintura ,CONCAT(a.Nombre_autor,' ',a.Apellido) as Autor  FROM bosdos6qw6vefrichu88.Pintura p 
+INNER JOIN bosdos6qw6vefrichu88.Autor a on(p.Autor_idAutor=a.idAutor)
+WHERE  Continente_idContinente ={idContinente};"""
+    conexion=obtener_conexion()
+    with conexion.cursor() as cursor:
+        cursor.execute(Consulta)
+        Pinturas=cursor.fetchall()
+    conexion.close()
+    return Pinturas
