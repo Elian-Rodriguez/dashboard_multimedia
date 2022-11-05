@@ -52,7 +52,7 @@ def Student():
         if nombre !=None and grado!=None  and nombre != " " and grado != " ":
             session['usuario']=nombre
             session['grado']=grado
-            return redirect(url_for('.generarRompecabezas'))
+            return redirect(url_for('.continentes'))
     return redirect(url_for('.studentLogin'))
 
 @Rompecabezas_Blueprint.route('/Cuestionario/<string:idPintura>')
