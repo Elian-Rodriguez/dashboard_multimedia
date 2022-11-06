@@ -162,7 +162,9 @@ def generarRompecabezasSeleccion(id_pintura):
     print(f"el contexto es {context}")
     return render_template('Rompecabezas.html',**context)
 
-
+@Rompecabezas_Blueprint.route('/conocenos')
+def conocenos():
+    return render_template('Conocenos.html')
 
 
 @Rompecabezas_Blueprint.route('/close')
