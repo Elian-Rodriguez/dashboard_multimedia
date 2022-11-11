@@ -138,6 +138,8 @@ def obtenerPinturasContinente(id_continete):
 @Rompecabezas_Blueprint.route('/rompecabezasPintura/<string:id_pintura>')
 def generarRompecabezasSeleccion(id_pintura):
     print(str(session['usuario']) +" - "+str(session['grado']))
+    usuario=session['usuario']
+    grado=session['grado']
     
     id = int(id_pintura)
     Rompecabezas = partPuzzleCm.obtenerPartesPintura(id)
@@ -151,6 +153,8 @@ def generarRompecabezasSeleccion(id_pintura):
 
     
     context={
+        'usuario':usuario,
+        'grado':grado,
         'Rompecabezas':Rompecabezas,
         'ruta':ruta,
         'partes':partes,
