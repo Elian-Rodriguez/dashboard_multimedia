@@ -70,7 +70,7 @@
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="idPintura" name="idPintura" value ="{{pintura.0}}" readonly=readonly>
                         {% for enunciado in enunciados %}
-                        <h4>{{enunciado.1}}</h4>
+                        <h4>¿ {{enunciado.1}} ?</h4>
                         <select name="{{enunciado.0}}"class="form-control" >
                             {% for respose in respuestas %}
                                 {% for respuesta in respose %}  
