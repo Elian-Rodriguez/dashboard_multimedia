@@ -1,9 +1,13 @@
 import pymongo
 import datetime
 
+from dotenv import load_dotenv
+import os
+load_dotenv() 
+
 # Create the client
 def obtenerConexionMongo():
-    client = pymongo.MongoClient("mongodb+srv://alien_83:Arelis11@cluster0.4ur0oyq.mongodb.net/?retryWrites=true&w=majority")
+    client = pymongo.MongoClient(os.getenv('client'))
     db = client.test
     print(db)
     return client

@@ -1,14 +1,16 @@
 import pymysql
+from dotenv import load_dotenv
+import os
+load_dotenv() 
 
-
-MYSQL_ADDON_HOST="bosdos6qw6vefrichu88-mysql.services.clever-cloud.com"
-MYSQL_ADDON_DB="bosdos6qw6vefrichu88"
-MYSQL_ADDON_USER="uzky8nlwzzgffdxj"
-MYSQL_ADDON_PORT=3306
-MYSQL_ADDON_PASSWORD="8a0LOqTkE8pm0TD1jJFQ"
-MYSQL_ADDON_URI="mysql://uzky8nlwzzgffdxj:8a0LOqTkE8pm0TD1jJFQ@bosdos6qw6vefrichu88-mysql.services.clever-cloud.com:3306/bosdos6qw6vefrichu88"
-HOST="bosdos6qw6vefrichu88-mysql.services.clever-cloud.com"
-DATA_BASE="bosdos6qw6vefrichu88"
+MYSQL_ADDON_HOST=os.getenv('MYSQL_ADDON_HOST')
+MYSQL_ADDON_DB=os.getenv('MYSQL_ADDON_DB')
+MYSQL_ADDON_USER=os.getenv('MYSQL_ADDON_USER')
+MYSQL_ADDON_PORT=os.getenv('MYSQL_ADDON_PORT')
+MYSQL_ADDON_PASSWORD=os.getenv('MYSQL_ADDON_PASSWORD')
+MYSQL_ADDON_URI=os.getenv('MYSQL_ADDON_URI')
+HOST=os.getenv('HOST')
+DATA_BASE=os.getenv('DATA_BASE')
 
 
 def obtener_conexion():
