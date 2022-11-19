@@ -19,5 +19,7 @@ unicorn== 2.0.0
 gunicorn== 20.1.0
 ordereddict
 pymongo
+load_dotenv
+os
 dnspython
 pymongo[srv]
