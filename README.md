@@ -10,10 +10,10 @@ Tomando como recurso la tecnología se propone generar un rompecabezas digital d
 # Objetivo general
 Fomentar en el niño o niña desde su educación inicial cultura general (Pinturas y obras de arte Históricas).
 # Objetivos específicos:
-•	Crear rompecabezas digitales.
-•	Generar en el niño curiosidad por el arte.
-•	Garantizar al niño el aprendizaje sistemático sobre el arte.
-•	Ejecutar una nueva metodología de enseñanza.
+-	Crear rompecabezas digitales.
+-	Generar en el niño curiosidad por el arte.
+-	Garantizar al niño el aprendizaje sistemático sobre el arte.
+-	Ejecutar una nueva metodología de enseñanza.
 # Población objetivo
 La población que va a hacer uso de este sistema son niños que cursan de quinto a séptimo grado en un margen de edad de 10 a 13 años.
 #Justificación 
