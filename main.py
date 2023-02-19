@@ -1,5 +1,4 @@
 from flask import Flask,render_template,request,flash,url_for,redirect,session
-from flask_mysqldb import MySQL
 from flask_login import login_manager,login_user,logout_user,login_required
 from config import Config
 from Pintor_route import pintor_Blueprint
@@ -79,5 +78,5 @@ def access_error(error):
     return render_template('500.html'), 500
 
 if __name__ == '__main__':
-    #app.run(debug=True,port=5000, host="0.0.0.0")
-    app.run(debug=True)
+    app.run(debug=False,port=5000, host="0.0.0.0")
+    #app.run(debug=True)
