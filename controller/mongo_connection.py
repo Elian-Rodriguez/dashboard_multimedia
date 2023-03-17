@@ -1,46 +1,41 @@
 import pymongo
 import datetime
-
 from dotenv import load_dotenv
 import os
-load_dotenv() 
 
-# Create the client
+load_dotenv() 
+coleccionDB = os.getenv('mongodbColection')
+
 def obtenerConexionMongo():
     client = pymongo.MongoClient(os.getenv('client'))
     db = client.test
-    print(db)
     return client
+
 def obtenerDataBase():
-    client =  obtenerConexionMongo()
-    
-    db = client['ART_QUALIFICATION']
-    # Fetch our series collection
-    return  db['RATINGS']
+    client = obtenerConexionMongo()
+    db = client[coleccionDB]
+    return db['RATINGS']
 
-def insertDocument(collection, data):
-    """ Function to insert a document into a collection and
-    return the document's id.
-    """
-    return collection.insert_one(data).inserted_id
-
-def insertNote(name:str,grado,idPregunta,idRespuesta,idPintura,puntaje):
-    myclient=obtenerConexionMongo()
-    mydb = myclient["ART_QUALIFICATION"]
-    mycol = mydb["QUALIFICATION"]
+def insertNote(name: str, grado, idPregunta, idRespuesta, idPintura, puntaje):
+    myclient = obtenerConexionMongo()
+    mydb = myclient[coleccionDB]
+    mycol = mydb["RATINGS"]
     name = name.upper()
-    idPregunta=int(idPregunta)
-    idRespuesta=int(idRespuesta)
-    d = datetime.datetime.strptime("2017-10-13T10:53:53.000Z", "%Y-%m-%dT%H:%M:%S.000Z")
-
+    idPregunta = int(idPregunta)
+    idRespuesta = int(idRespuesta)
+    # Obtener la fecha actual
+    fecha_actual = datetime.datetime.now()
+    # Convertir la fecha actual a una cadena de texto en el formato ISO requerido por MongoDB
+    fecha_actual_str = fecha_actual.isoformat()
     new_show = {
-    "name": name,
-    "grado":grado,
-    "date" : d,
-    "idPregunta": idPregunta,
-    "idRespuesta":idRespuesta,
-    "idPintura":idPintura,
-    "Puntaje":puntaje
+        "name": name,
+        "grado": grado,
+        "date": fecha_actual_str,
+        "idPregunta": idPregunta,
+        "idRespuesta": idRespuesta,
+        "idPintura": idPintura,
+        "Puntaje": puntaje
     }
-    
     return mycol.insert_one(new_show).inserted_id
+
+print(obtenerConexionMongo())
